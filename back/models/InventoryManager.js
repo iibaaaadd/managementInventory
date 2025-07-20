@@ -90,32 +90,51 @@ class InventoryManager extends EventEmitter {
 
   async createTransaction(id, productId, quantity, type, customerId) {
     let finalQuantity = quantity;
+    let totalPrice = 0;
+
+    // Ambil harga produk
+    const productQuery = gsql`
+      SELECT price FROM products WHERE id = ${productId}
+    `;
+    const productResult = await db.query(productQuery);
+    const product = productResult.rows[0];
+
+    if (!product) {
+      throw new Error(`Produk dengan ID ${productId} tidak ditemukan.`);
+    }
+
+    let unitPrice = parseFloat(product.price);
+
+    // Hitung total transaksi sale customer untuk logika diskon
     if (type === "sale" && customerId) {
-      const checkQuery = gsql`
+      const countQuery = gsql`
         SELECT COUNT(*) AS count
         FROM transactions
         WHERE customer_id = ${customerId} AND type = 'sale'
-        `;
-      const result = await db.query(checkQuery);
-      const count = parseInt(result.rows[0].count, 3);
+      `;
+      const countResult = await db.query(countQuery);
+      const count = parseInt(countResult.rows[0].count, 10) + 1; // +1 untuk transaksi saat ini
 
-      if (count > 0) {
-        finalQuantity = quantity * 0.85;
+      // Terapkan diskon 15% tiap 3x transaksi
+      if (count % 3 === 0) {
+        unitPrice *= 0.85; // Diskon 15%
         logger.log(
-          `Diskon 15% diterapkan untuk customer ${customerId}, quantity: ${quantity} → ${finalQuantity}`
+          `✅ Diskon 15% diterapkan untuk customer ${customerId} pada transaksi ke-${count}`
         );
       }
     }
 
+    totalPrice = unitPrice * finalQuantity;
+
     await this.updateStock(productId, finalQuantity, type);
 
     const insertQuery = gsql`
-        INSERT INTO transactions (id, product_id, quantity, type, customer_id, created_at)
-        VALUES (${id}, ${productId}, ${finalQuantity}, ${type}, ${customerId}, NOW())
+      INSERT INTO transactions (id, product_id, quantity, type, customer_id, total_price, created_at)
+      VALUES (${id}, ${productId}, ${finalQuantity}, ${type}, ${customerId}, ${totalPrice}, NOW())
     `;
     await db.query(insertQuery);
 
-    logger.log(`Transaction recorded: ${id}`);
+    logger.log(`📦 Transaction recorded: ${id}`);
   }
 
   async getProductsByCategory(category) {
@@ -168,6 +187,7 @@ class InventoryManager extends EventEmitter {
         p.price,
         t.type,
         t.quantity,
+        t.total_price,
         t.created_at
         FROM transactions t
         JOIN products p ON t.product_id = p.id
@@ -196,10 +216,11 @@ class InventoryManager extends EventEmitter {
         product_name,
         product_id,
         created_at,
+        total_price
         } = row;
 
         if (type === "sale") {
-        const revenue = quantity * price;
+        const revenue = parseInt(total_price);
 
         summary.totalRevenue += revenue;
         summary.totalOrders += 1;

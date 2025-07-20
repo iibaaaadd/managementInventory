@@ -12,8 +12,10 @@ CREATE TABLE transactions (
   quantity INTEGER,
   type VARCHAR(10) CHECK (type IN ('purchase', 'sale')),
   customer_id VARCHAR(50),
+  total_price NUMERIC(10,2),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 INSERT INTO products (id, name, price, stock, category) VALUES
 ('P001', 'Laptop Asus ROG', 15000000.00, 10, 'Electronics'),

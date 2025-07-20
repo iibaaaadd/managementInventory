@@ -60,3 +60,15 @@
 [LOG - 2025-07-20T07:29:41.768Z] ⚠️ Low stock for product P006, remaining: 2
 [LOG - 2025-07-20T07:29:41.772Z] Transaction recorded: trx109
 [LOG - 2025-07-20T07:29:41.774Z] Transaction created: ID=trx109, ProductID=P006, Qty=1, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:05:51.373Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:11:39.306Z] Transaction recorded: T016
+[LOG - 2025-07-20T08:11:39.307Z] Transaction created: ID=T016, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:12:10.561Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:12:22.719Z] 📦 Transaction recorded: T017
+[LOG - 2025-07-20T08:12:22.720Z] Transaction created: ID=T017, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:12:41.759Z] ✅ Diskon 15% diterapkan untuk customer cust005 pada transaksi ke-3
+[LOG - 2025-07-20T08:12:41.764Z] 📦 Transaction recorded: T018
+[LOG - 2025-07-20T08:12:41.765Z] Transaction created: ID=T018, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:14:57.800Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:20:17.643Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:21:51.510Z] Server running on http://localhost:3000

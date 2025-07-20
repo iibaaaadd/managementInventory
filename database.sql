@@ -12,6 +12,7 @@ CREATE TABLE transactions (
   quantity INTEGER,
   type VARCHAR(10) CHECK (type IN ('purchase', 'sale')),
   customer_id VARCHAR(50),
+  total_price VARCHAR(100),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
