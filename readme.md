@@ -9,16 +9,16 @@ Sistem ini terdiri dari dua bagian utama:
 
 ## 📁 Struktur Folder
 
-project-root/
-│
-├── back/ # Backend API (Node.js)
-├── front/ # Frontend (Next.js)
-├── database.sql # File untuk import database MySQL
-└── README.md
+project-root/ \n
+│\n
+├── back/ # Backend API (Node.js) \n
+├── front/ # Frontend (Next.js) \n
+├── database.sql # File untuk import database MySQL \n
+└── README.md 
 
 ---
 ### 🗃️ Setup Database
-Buka postgree
+Buka postgree \n
 Import file database.sql ke database tersebut.
 
 ### Mejalankan frontend
