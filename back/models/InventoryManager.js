@@ -196,8 +196,16 @@ class InventoryManager extends EventEmitter {
 
     const { rows } = await db.query(query, [startDate, endDate]);
 
+    const queryta = gsql`SELECT price, stock FROM products`;
+    const result = await db.query(queryta);
+    const rowsta = result.rows;
+    let total_asset = 0;
+    total_asset = rowsta.reduce((total, p) => total + parseFloat(p.price) * parseInt(p.stock), 0);
+
+
+
     const summary = {
-        totalRevenue: 0,
+        totalRevenue: total_asset,
         totalOrders: 0,
         productsSold: 0,
         avgOrderValue: 0,
@@ -222,7 +230,7 @@ class InventoryManager extends EventEmitter {
         if (type === "sale") {
         const revenue = parseInt(total_price);
 
-        summary.totalRevenue += revenue;
+        // summary.totalRevenue += revenue;
         summary.totalOrders += 1;
         summary.productsSold += quantity;
 

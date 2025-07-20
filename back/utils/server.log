@@ -72,3 +72,19 @@
 [LOG - 2025-07-20T08:14:57.800Z] Server running on http://localhost:3000
 [LOG - 2025-07-20T08:20:17.643Z] Server running on http://localhost:3000
 [LOG - 2025-07-20T08:21:51.510Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:26:14.172Z] 📦 Transaction recorded: T026
+[LOG - 2025-07-20T08:26:14.173Z] Transaction created: ID=T026, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:26:27.793Z] Transaction error: duplicate key value violates unique constraint "transactions_pkey"
+[LOG - 2025-07-20T08:26:34.191Z] 📦 Transaction recorded: T027
+[LOG - 2025-07-20T08:26:34.192Z] Transaction created: ID=T027, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:26:42.867Z] ✅ Diskon 15% diterapkan untuk customer cust005 pada transaksi ke-3
+[LOG - 2025-07-20T08:26:42.870Z] 📦 Transaction recorded: T028
+[LOG - 2025-07-20T08:26:42.871Z] Transaction created: ID=T028, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:27:27.615Z] 📦 Transaction recorded: T029
+[LOG - 2025-07-20T08:27:27.616Z] Transaction created: ID=T029, ProductID=P001, Qty=5, Type=sale, CustomerID=cust005
+[LOG - 2025-07-20T08:29:14.173Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:31:28.579Z] Server running on http://localhost:3000
+[LOG - 2025-07-20T08:31:32.493Z] Internal server error: Cannot read properties of undefined (reading 'reduce')
+[LOG - 2025-07-20T08:31:32.500Z] Internal server error: Cannot read properties of undefined (reading 'reduce')
+[LOG - 2025-07-20T08:31:36.318Z] Internal server error: Cannot read properties of undefined (reading 'reduce')
+[LOG - 2025-07-20T08:34:25.595Z] Server running on http://localhost:3000
